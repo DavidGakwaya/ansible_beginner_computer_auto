@@ -1,5 +1,5 @@
 [defaults]
-192.168.3.147
-41.223.226.140
+192.168.3.147 apache_package=apache2 php_package=libapache2-mod-php
+41.223.226.140 apache_package=apache2 php_package=libapache2-mod-php
 [all:vars]
 ansible_python_interpreter=/usr/bin/python3

@@ -5,45 +5,26 @@
   tasks:
 
 # Installation in Ubuntu/Debian Distribution
-        # Updating repo index 
-  - name: update repository index
-    apt:
-      update_cache: yes
-    when: ansible_distribution in ["Ubuntu", "Debian"]
-
-        # Installing apache2
+       
+        # Update repo index & Install apache2 and php package for Ubuntu
   - name: install apache package
     apt:
-      name: apache2
+      name: 
+        - apache2
+        - libapache2-mod-php
       state: latest
-    when: ansible_distribution in ["Ubuntu", "Debian"]
-
-        # Adding php support for apache
-  - name: add php support for apache
-    apt:
-      name: libapache2-mod-php
-      state: latest
+      update_cache: yes
     when: ansible_distribution in ["Ubuntu", "Debian"]
 
 # Installation in Redhat Distribution
-        # Updating repo index 
-  - name: add Update Redhat/Centos Dist repository index
-    dnf:
-      update_cache: yes
-    when: ansible_distribution in ["Redhat", "CentOS"]
-    #Targeting specific OS version
-    #When: ansible_distribution == "CentOS" and ansible_distribution_version == "8.2"
-
-        # Installing apache2 package
+       
+        # Update repo index & Install apache2 package and php package for CentOS
   - name: Install apache package
     dnf:
-      name: httpd
+      name: 
+        - httpd
+        - php
       state: latest
+      update_cache: yes
     when: ansible_distribution in ["Redhat", "CentOS"]
-
-        # Adding php support for apache
-  - name: add php support for apache
-    dnf:
-      name: php
-      state: latest
-    when: ansible_distribution in ["Redhat", "CentOS"]
+     #When: ansible_distribution == "CentOS" and ansible_distribution_version == "8.2"

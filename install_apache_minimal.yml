@@ -1,0 +1,17 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+# Installation in Ubuntu/Debian Distribution
+       
+        # Update repo index & Install apache2 and php package
+  - name: install apache package
+    package:
+      name: 
+        - "{{ apache_package }}"
+        - "{{ php_package }}"
+      state: latest
+      update_cache: yes
+     #When: ansible_distribution == "CentOS" and ansible_distribution_version == "8.2"
